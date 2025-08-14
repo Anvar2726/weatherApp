@@ -1,0 +1,91 @@
+.forecast-card {
+  background: linear-gradient(135deg, var(--color-bg) 0%, rgba(0,0,0,0.05) 100%);
+  color: var(--color-text);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 420px;
+  margin: 20px auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  strong {
+    color: var(--color-primary);
+  }
+
+  // Day
+  .forecast-day {
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  // Temperature info
+  .temp-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-weight: 500;
+  }
+
+  // Weather info
+  .weather-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+  }
+
+  // Sun info
+  .sun-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  // Moon info
+  .moon-info {
+    padding: 10px 0 0;
+    display: grid;
+    gap: 4px;
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 16px;
+
+    p {
+      font-size: 14px;
+    }
+
+    .weather-info img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
