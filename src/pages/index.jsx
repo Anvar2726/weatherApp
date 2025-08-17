@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toast } from "react-toastify";
-// import { useGeolocated } from "react-geolocated";
+import { useGeolocated } from "react-geolocated";
 
 
 import WeatherInfo from "../components/card/weather-info";
@@ -18,26 +18,26 @@ const HomePage = () => {
   const [forecastData, setForecastData] = useState([]);
   const [days, setDays] = useState(3);
 
-  // const { coords } = useGeolocated({
-  //   positionOptions: { enableHighAccuracy: true },
-  //   userDecisionTimeout: 5000,
-  // });
+  const { coords } = useGeolocated({
+    positionOptions: { enableHighAccuracy: true },
+    userDecisionTimeout: 5000,
+  });
 
-  // useEffect(() => {
-  //   const getLocation = async () => {
-  //     if (coords) {
-  //       try {
-  //         const { latitude, longitude } = coords;
-  //         const { data: info } = await request(`/current.json?key=${API_KEY}&q=${latitude},${longitude}`);
-  //         setData(info);
-  //         setQuery(`${info.location.name}, ${info.location.country}`);
-  //       } catch (error) {
-  //         toast.error("Error fetching location data: " + error.message);
-  //       }
-  //     }
-  //   }
-  //   getLocation();
-  // }, [coords, setData, setQuery]);
+  useEffect(() => {
+    const getLocation = async () => {
+      if (coords) {
+        try {
+          const { latitude, longitude } = coords;
+          const { data: info } = await request(`current.json?key=${API_KEY}&q=${latitude},${longitude}`);
+          setData(info);
+          setQuery(`${info.location.name}, ${info.location.country}`);
+        } catch (error) {
+          toast.error("Error fetching location data: " + error.message);
+        }
+      }
+    }
+    getLocation();
+  }, [coords, setData, setQuery]);
 
   
 
