@@ -57,6 +57,12 @@
       display: flex;
       justify-content: space-between;
     }
+
+    &-box{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }
 
@@ -70,3 +76,51 @@
     }
   }
 }
+
+select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  // Focus holati
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+  }
+
+  // Hover effekti
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  // Option style
+  option {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: 8px 12px;
+  }
+}
+
+// Responsivlik
+@media (max-width: 768px) {
+  select {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  select {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+}
+

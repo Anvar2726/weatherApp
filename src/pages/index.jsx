@@ -89,13 +89,15 @@ const HomePage = () => {
         </div>
         {data && Object.keys(data).length > 0 && <WeatherInfo {...data} />}
         <div className="home__forecast">
-          <h2 className="home__forecast-title">Forecasts</h2>
-          <select name="forecastday" id="forecastDaty" onChange={handleSelectDay}>
-            <option value="3">3 Days</option>
-            <option value="7">7 Days</option>
-            <option value="10">10 Days</option>
-            <option value="14">14 Days</option>
-          </select>
+          <div className="home__forecast-box">
+            <h2 className="home__forecast-title">Forecasts</h2>
+            <select name="forecastday" id="forecastDaty" onChange={handleSelectDay}>
+              <option value="3">3 Days</option>
+              <option value="7">7 Days</option>
+              <option value="10">10 Days</option>
+              <option value="14">14 Days</option>
+            </select>
+          </div>
 
           <div className="home__forecast-row">
             <Swiper
@@ -103,22 +105,20 @@ const HomePage = () => {
               spaceBetween={30}
               modules={[Pagination]}
               className="mySwiper"
-              breakpoints={
-                {
-                  320: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  },
-                  768: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                  },
-                }
-              }
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
             >
               {forecastData.map((forecast, index) => (
                 <SwiperSlide key={index}>
