@@ -46,7 +46,7 @@ const HomePage = () => {
       const params = { q: query, key: API_KEY, days: selectedDays };
       const {
         data: { forecast },
-      } = await request(`/forecast.json`, { params });
+      } = await request(`forecast.json`, { params });
       setForecastData(forecast.forecastday);
     } catch (error) {
       toast.error("Error fetching forecast data: " + error.message, )
@@ -55,7 +55,7 @@ const HomePage = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const { data: info } = await request(`/current.json?key=${API_KEY}&q=${query}`);
+      const { data: info } = await request(`current.json?key=${API_KEY}&q=${query}`);
       setData(info);
       getForecasts();
     } catch (error) {
