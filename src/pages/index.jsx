@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { toast } from "react-toastify";
 import { useGeolocated } from "react-geolocated";
 
-
 import WeatherInfo from "../components/card/weather-info";
 import request from "../server";
 import { API_KEY } from "../consts";
@@ -28,18 +27,18 @@ const HomePage = () => {
       if (coords) {
         try {
           const { latitude, longitude } = coords;
-          const { data: info } = await request(`current.json?key=${API_KEY}&q=${latitude},${longitude}`);
+          const { data: info } = await request(
+            `current.json?key=${API_KEY}&q=${latitude},${longitude}`
+          );
           setData(info);
           setQuery(`${info.location.name}, ${info.location.country}`);
         } catch (error) {
           toast.error("Error fetching location data: " + error.message);
         }
       }
-    }
+    };
     getLocation();
   }, [coords, setData, setQuery]);
-
-  
 
   const getForecasts = async (selectedDays = days) => {
     try {
@@ -49,7 +48,7 @@ const HomePage = () => {
       } = await request(`forecast.json`, { params });
       setForecastData(forecast.forecastday);
     } catch (error) {
-      toast.error("Error fetching forecast data: " + error.message, )
+      toast.error("Error fetching forecast data: " + error.message);
     }
   };
   const handleSubmit = async (e) => {
@@ -59,14 +58,17 @@ const HomePage = () => {
       setData(info);
       getForecasts();
     } catch (error) {
-      toast.error("City not found, please try again. " + error.message,);
+      toast.error("City not found, please try again. " + error.message);
     }
   };
 
   const handleSelectDay = (e) => {
-    const selectedDays = e.target.value;
-    setDays(selectedDays);
-    getForecasts(selectedDays);
+    if (e.target.value !== "1") {
+      const selectedDays = e.target.value;
+      setDays(selectedDays);
+      getForecasts(selectedDays);
+      return;
+    }
   };
 
   return (
@@ -92,6 +94,7 @@ const HomePage = () => {
           <div className="home__forecast-box">
             <h2 className="home__forecast-title">Forecasts</h2>
             <select name="forecastday" id="forecastDaty" onChange={handleSelectDay}>
+              <option value="1">Select Days</option>
               <option value="3">3 Days</option>
               <option value="7">7 Days</option>
               <option value="10">10 Days</option>
